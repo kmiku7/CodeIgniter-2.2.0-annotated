@@ -31,6 +31,7 @@ class CI_Cache extends CI_Driver_Library {
 	);
 
 	protected $_cache_path		= NULL;		// Path of cache files (if file-based cache)
+	// 数据实际存储对象。
 	protected $_adapter			= 'dummy';
 	protected $_backup_driver;
 
@@ -78,6 +79,7 @@ class CI_Cache extends CI_Driver_Library {
 	 */
 	public function save($id, $data, $ttl = 60)
 	{
+		// $ttl是否生效依赖于使用的driver对吧。
 		return $this->{$this->_adapter}->save($id, $data, $ttl);
 	}
 

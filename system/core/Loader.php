@@ -898,6 +898,7 @@ class CI_Loader {
 		// We'll test for both lowercase and capitalized versions of the file name
 		foreach (array(ucfirst($class), strtolower($class)) as $class)
 		{
+			// 拼出目标类文件路径，默认路径下。
 			$subclass = APPPATH.'libraries/'.$subdir.config_item('subclass_prefix').$class.'.php';
 
 			// Is this a class extension request?
@@ -912,6 +913,7 @@ class CI_Loader {
 				}
 
 				// Safety:  Was the class already loaded by a previous call?
+				// _ci_loaded_files，缓存已加载的文件。
 				if (in_array($subclass, $this->_ci_loaded_files))
 				{
 					// Before we deem this to be a duplicate request, let's see

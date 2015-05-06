@@ -46,6 +46,7 @@ class CI_Controller {
 			$this->$var =& load_class($class);
 		}
 
+		// 这是一个基类。
 		$this->load =& load_class('Loader', 'core');
 
 		$this->load->initialize();
