@@ -26,6 +26,7 @@
  * @category	Loader
  * @link		http://codeigniter.com/user_guide/libraries/loader.html
  */
+// 从实现上也能看出来，controller是“顶层的唯一入口”，controller之间不能互相调用。
 class CI_Loader {
 
 	// All these are set automatically. Don't mess with them.
@@ -885,6 +886,7 @@ class CI_Loader {
 
 		// Was the path included with the class name?
 		// We look for a slash to determine this
+		// 可以指定子路径，libraries/.../class-name.php
 		$subdir = '';
 		if (($last_slash = strrpos($class, '/')) !== FALSE)
 		{
@@ -914,6 +916,7 @@ class CI_Loader {
 
 				// Safety:  Was the class already loaded by a previous call?
 				// _ci_loaded_files，缓存已加载的文件。
+				// 检查文件的存在性总是要进行的。
 				if (in_array($subclass, $this->_ci_loaded_files))
 				{
 					// Before we deem this to be a duplicate request, let's see
